@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/main.js',
   mode: 'development',
   output: {
    filename: 'main.js',
@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
       new HtmlWebpackPlugin({
           title: 'ToDue',
-          template: 'index.html'
+          template: './src/index.html'
       })
   ]
 };
