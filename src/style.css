@@ -1,0 +1,439 @@
+:root{
+    --base-color: #D1D8FA;
+    --complimentary-color: #E3D6F5;
+    --highlight-color: #0A8AA9;
+}
+
+html, body, #content{
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+#content{
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 15vh 1fr;
+    gap: 2px;
+    grid-template-areas: 
+    "aside header"
+    "aside main";
+}
+
+aside{
+    display: grid;
+    grid-area: aside;
+    grid-template-rows: 10vh 5vh calc(8vh * 3);
+    background: linear-gradient(180deg, #E3D6F5, #D1D8FA);
+    grid-auto-flow: row;
+    min-width: 300px;
+    min-height: 100%;
+}
+aside #logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: #0A8AA9;
+    border-bottom: dashed 4px white;
+    gap: 10px;
+    background-color: #adb7e6;
+}
+
+aside #logo img{
+    border-radius: 50%;
+    height: 80%;
+    aspect-ratio: 1;
+}
+
+aside ul{
+    grid-row: 3/4 ;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-rows: repeat(3, 4vh);
+    gap: 3vh;
+    padding-left: 10px;
+
+}
+
+aside li{
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+    color: #0A8AA9;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    /* border: 1px solid white; */
+}
+
+aside li:hover{
+    background-color: #b384f3;
+    color: white;
+}
+aside li img{
+    height: 90%;
+    /* background-color: white; */
+}
+
+#archives{
+    display: none;
+}
+
+/* HEADER DOM */
+
+#content>header{
+    grid-area: header;
+    background-color: #D1D8FA;
+    display: grid;
+    grid-template-columns: 40%;
+    justify-content: end;
+}
+
+#content>header div{
+    display: flex;
+    font-size: x-large;
+    font-weight: bold;
+    justify-content: flex-end;
+    margin-right: 15px;
+    align-items: center;
+    gap: 10px;
+}
+
+/* #content>header input{
+    background-color: #E3D6F5;
+    border: solid white 2px;
+    aspect-ratio: 10;
+    border-radius: 30px;
+    min-height: 40px;
+    max-width: 30vw;
+    margin-left: 7%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+} */
+
+#content>header input{
+    background-color: #D1D8FA;
+    border: none;
+    display: none;
+}
+
+#content>header img{
+    aspect-ratio: 1;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    border: white solid 2px;
+}
+
+/* MAIN DOM */
+
+main{
+    grid-area: main;
+    background-color: purple;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+}
+
+main>header{
+    height: 6vh;
+    display: flex;
+}
+main>header input{
+    width: 100%;
+    background-color: #E3D6F5;
+    border: none;
+    font-size: x-large;
+    padding-left: 40px;
+    cursor:default;
+}
+
+main>#workspace{
+    box-sizing: border-box;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+}
+
+main #open_project{
+    min-height: 100%;
+    height: fit-content;
+    width: 70%;
+    background-color: #D1D8FA90;
+    border: solid white 3px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0, 0.3);
+    display: grid;
+    grid-template-rows: repeat(2, 50px);
+    align-items: center;
+    grid-auto-rows: 50px;
+}
+
+main #open_project .single_toDo{
+    display: grid;
+    height: 100%;
+    align-items: center;
+    grid-template-columns: 40% 20% 17% 17%;
+    gap: 2%;
+    font-weight: bold;
+    padding: 0 3%;
+    border-bottom: dashed white 2px;
+}
+main #open_project #toDo_title{
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.edit_toDo{
+    background-color: #E3D6F5;
+    border-radius: 20px;
+    border-color: #0A8AA9;
+    cursor: pointer;
+    /* height: 60%; */
+    /* max-height: 100%; */
+    /* aspect-ratio: 1; */
+}
+.open_todo{
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.buttonsdiv{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main #addToDo{
+    flex-grow: 0;
+    align-self: flex-end;
+    background-color: #E3D6F5;
+    aspect-ratio: 1;
+    width: 10%;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+    border-color: #0A8AA9;
+}
+main #addToDo:hover{
+    background-color: #b384f3;
+}
+
+#newToDoModal, #editToDoModal, #newprojectmodal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #20a8ca;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 1px 1px gray;
+    display: grid;
+    grid-template-rows: repeat(5, 20%);
+    justify-items: end;
+    gap: 10px;
+    font-weight: bold;
+}
+#newToDoModal input, #newToDoModal textarea, #editToDoModal input, #editToDoModal textarea{
+    width: 80%;
+}
+#newToDoModal button, #editToDoModal button, .projectbuttonsdiv button{
+    background-color: #E3D6F5;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 2px outset #0A8AA9;
+    cursor: pointer;
+}
+#editToDoModal #deletetodo, .projectbuttonsdiv .deleteprojectbutton{
+    border-color: red;
+}
+
+#newToDoModal li , #editToDoModal li{
+    width: 80%;
+    list-style: none;
+    padding: none;
+}
+
+/* all projects */
+
+#allprojects_content{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 20%);
+    grid-template-rows: repeat(4, calc((85vh - 20px) / 4));
+    gap: 25px;
+    padding: 20px;
+}
+
+.projectcard{
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background-color: #D1D8FA;
+    opacity: 0.8;
+    background-image:  linear-gradient(135deg, #08c9d3 25%, transparent 25%), linear-gradient(225deg, #08c9d3 25%, transparent 25%), linear-gradient(45deg, #08c9d3 25%, transparent 25%), linear-gradient(315deg, #08c9d3 25%, #D1D8FA 25%);
+    background-position:  34px 0, 34px 0, 0 0, 0 0;
+    background-size: 68px 68px;
+    background-repeat: repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.projectcard .project_name{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+.projectbuttonsdiv{
+    display: flex;
+    justify-content: space-around;
+}
+
+.projectbuttonsdiv button{
+    background-color: #E3D6F5;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 2px outset #0A8AA9;
+    cursor: pointer;
+}
+main #addProject{
+    align-self: center;
+    justify-self: center;
+    background-color: #E3D6F5;
+    aspect-ratio: 1;
+    width: 60%;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+    border-color: #0A8AA9;
+}
+main #addProject:hover{
+    background-color: #b384f3;
+}
+
+#newprojectmodal li{
+    list-style: none;
+}
+#newprojectmodal {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#newprojectmodal button{
+    background-color: #E3D6F5;
+    color: black;
+    aspect-ratio: 2;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border: 2px outset #0A8AA9;
+    cursor: pointer;
+}
+#newprojectmodal #cancelnewproject{
+    border-color: gray;
+}
+
+/* profile content */
+
+#profilecontent{
+    width: 100%;
+    height: 100%;
+    background-color: #d1d8fa;
+opacity: 1;
+background-image: radial-gradient(#0A8AA9 2px, #d1d8fa 2px);
+background-size: 40px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+}
+
+#profileform{
+    box-sizing: border-box;
+    padding: 20px;
+    width: 80%;
+    height: fit-content;
+    background-color: #E3D6F5;
+    border-radius: 20px;
+    border: 3px solid #0A8AA9;
+    display: grid;
+    grid-template-rows: repeat(4, 20%);
+    gap: 20px;
+    list-style: none;
+    font-size: x-large;
+    font-weight: bold;
+}
+#profileform li:nth-child(1), #profileform li:nth-child(2){
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    gap: 20px;
+}
+
+#profileform li:nth-child(3), #profileform li:nth-child(4){
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+#profileform button{
+    font-size: inherit;
+    background-color: #adb7e6;
+    color: black;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 5px 10px;
+    border: 2px outset #0A8AA9;
+    cursor: pointer;
+}
+
+#profileform #resetimage:hover{
+    background-color: #0A8AA9;
+    border-color: #0A8AA9;
+    color: white;
+}
+
+#profileform #deleteprofile{
+    background-color: lightcoral;
+    border-color: red;
+}
+
+#profileform #deleteprofile:hover{
+    background-color: red;
+    border-color: red;
+    color: white;
+}
