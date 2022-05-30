@@ -10,6 +10,8 @@ function projectCreator(name) {
     this.createToDo= function(title, description, dueDate, priority, completion=false) {
         this.todoArray.push({title, description,dueDate,priority, completion});
         // console.log(this.todoArray);
+        // console.log(this);
+        // console.log(allProjects);
         localStorage.setItem('allProjects', JSON.stringify(allProjects));
     };
     this.editToDo = function(index, title, description, dueDate, priority, completion) {
@@ -31,20 +33,26 @@ let allProjects;
 function checkAllProjects(){
 if(localStorage.getItem('allProjects')!==null){
     allProjects= JSON.parse(localStorage.getItem('allProjects'));
-    for(let object of allProjects){
-        object.createToDo= function(title, description, dueDate, priority, completion=false) {
-            this.todoArray.push({title, description,dueDate,priority, completion});
-            // console.log(this.todoArray);
+    for(let object=0; object< allProjects.length; object++){
+        // console.log(allProjects);
+        allProjects[object].createToDo= function(title, description, dueDate, priority, completion=false) {
+            allProjects[object].todoArray.push({title, description,dueDate,priority, completion});
+            // console.log(allProjects);
+            // console.log(allProjects[object]);
+            // console.log(currentProject);
+            currentProject= allProjects[object]; //i dont know how else to fix the currentproject only loads value when changing to the page
             localStorage.setItem('allProjects', JSON.stringify(allProjects));
         };
-        object.editToDo = function(index, title, description, dueDate, priority, completion) {
-            this.todoArray.splice(index, 1, {title, description,dueDate,priority, completion});
+        allProjects[object].editToDo = function(index, title, description, dueDate, priority, completion) {
+            allProjects[object].todoArray.splice(index, 1, {title, description,dueDate,priority, completion});
             // console.log(this.todoArray);
+            currentProject= allProjects[object];
             localStorage.setItem('allProjects', JSON.stringify(allProjects));
         }
-        object.deleteToDo = function(index){
-            this.todoArray.splice(index, 1);
+        allProjects[object].deleteToDo = function(index){
+            allProjects[object].todoArray.splice(index, 1);
             // console.log(this.todoArray);
+            currentProject= allProjects[object];
             localStorage.setItem('allProjects', JSON.stringify(allProjects));
         } 
     }
@@ -120,11 +128,15 @@ function deleteToDo(elementid){
 function displayMain(currentProjectExport=undefined){
     checkAllProjects();
     if(currentProjectExport!==undefined){
-        currentProject=currentProjectExport;
+        // console.log(currentProjectExport);
+        // console.log(allProjects);
+        currentProject=allProjects[currentProjectExport];
     }
     else{
         currentProject = practiceProject;
     }
+    // console.log('current project');
+    // console.log(currentProject);
     let main = document.querySelector('main');
 
     main.appendChild(displayHeader());

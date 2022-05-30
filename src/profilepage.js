@@ -1,6 +1,6 @@
 export default profileMain;
 import { newFormlistElement, standardProjects } from "./defaultpage";
-import { user, newuser , newprofilepic, resetaccount} from "./main";
+import { user, newuser , newprofilepic, resetaccount, standarprofilepic, displayHeader, displayMain, removeCurrentMain} from "./main";
 import userpic from './images/cathryn-lavery-fMD_Cru6OTk-unsplash.jpg';
 
 
@@ -80,7 +80,19 @@ function changelistener(){
         // console.log(newprofilepic.pic);
     });
     deleteprofile.addEventListener('click',()=>{
-        resetaccount.projects = "";
+        // resetaccount.projects = "new";
+        let main = document.querySelector('main');
+        let header= document.querySelector('header'); //header.replacewith wasnt working when header was outside of set. dont forget to reload element/node every time it changes
+        standarprofilepic.pic = userpic;
+        user.name = "User";
+        // entireaccount.projects = [];
+        // console.log(entireaccount);
+        // resetaccount= entireaccount;
+        localStorage.clear();
+        header.replaceWith(displayHeader());
+        removeCurrentMain();
+        displayMain();
+        // console.log(resetaccount.projects);
         // document.getElementById('username').value = "";
     })
 }

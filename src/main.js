@@ -11,7 +11,7 @@ export {removeCurrentMain, displayMain};
 import profileMain from './profilepage';
 export {user, newuser, newprofilepic};
 import {allProjects} from './defaultpage';
-export {resetaccount};
+export {resetaccount, standarprofilepic, displayHeader};
 
 // DOM MANIPULATION
 let user={name: "User"};
@@ -169,8 +169,9 @@ let newprofilepic = new Proxy(standarprofilepic, {
 });
 
 // DELETE ACCOUNT
+//ISNT IN USE
 let resetaccount = new Proxy(entireaccount, {
-    set: (target, key, value)=>{
+    get: (obj, prop)=>{
         let main = document.querySelector('main');
         let header= document.querySelector('header'); //header.replacewith wasnt working when header was outside of set. dont forget to reload element/node every time it changes
         standarprofilepic.pic = userpic;

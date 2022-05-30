@@ -22,7 +22,7 @@ function openprojectaddeventlistener(){
             currentProjectExport= allProjects[button.parentElement.parentElement.id];
             // localStorage.setItem('currentProjectExport', JSON.stringify(currentProjectExport));
             removeCurrentMain();
-            displayMain(currentProjectExport);
+            displayMain(button.parentElement.parentElement.id);
         })
     })
 }
